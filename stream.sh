@@ -16,5 +16,5 @@ SCREEN_HEIGHT=720
 
 ffmpeg -f alsa -ac 2 -i pulse -async 1 -f x11grab  \
   -r 30 -s 1280x720 -i :0.0+100,100 -acodec libmp3lame -vcodec libx264  \
-  -profile:v high444 -b:v 2000k -maxrate 2700k  \
+  -profile:v high444 -b:v 2000k -maxrate 2700k  -bufsize 6000k\
   -threads 0 -f mpegts - | cvlc - --sout '#std{access=http,mux=ts,dst=:8090/source}'
